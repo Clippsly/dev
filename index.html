@@ -28,7 +28,7 @@
 
         <ul class="dropdown-menu d-none" aria-labelledby="userDropdown" id="user-dropdown-menu">
             <li><a class="dropdown-item" id="profile-link">My Profile</a></li>
-            <li><a class="dropdown-item" id="balance"></a></li>
+            <li><a class="dropdown-item" id="balance" href="/balance"></a></li>
             <li><a class="dropdown-item" href="/upload">Upload</a></li>
             <li><a class="dropdown-item" href="/manage">Manage</a></li>
             <li><a class="dropdown-item" href="/settings">Settings</a></li>
@@ -63,6 +63,7 @@
 <script src="/lib/js/page-loaders/load-upload-page.js"></script>
 <script src="/lib/js/page-loaders/load-cliptivity-page.js"></script>
 <script src="/lib/js/page-loaders/load-settings-page.js"></script>
+<script src="/lib/js/page-loaders/load-balance-page.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         function loadPage(pathname) {
@@ -84,6 +85,8 @@
                 visitErrorPage(code);
             } else if (pathname.startsWith('/upload')) {
                 visitUploadPage();
+            } else if (pathname.startsWith('/balance')) {
+                visitBalancePage();
             } else if (pathname.startsWith('/cliptivity')) {
                 const queryParams = new URLSearchParams(window.location.search);
                 const page = queryParams.get('page');
