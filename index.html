@@ -54,6 +54,7 @@
                                 }
 
                                 this.results.hidden = false
+                                this.results.innerHTML = ""
 
                                 const json = await response.json()
                                 console.log(json)
@@ -99,7 +100,7 @@
                     <button data-action="click->search#search" id="search-button" name="Search">
                         <img src="https://cdn.clippsly.com/brand_assets/svg/search-icon.svg" aria-hidden="true" />
                     </button>
-                    <div data-search-target="results" class="search-suggestions"></div>
+                    <div data-search-target="results" hidden class="search-suggestions"></div>
                 </div>
             </div>
             <div class="user-info dropdown">
