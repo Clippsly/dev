@@ -24,6 +24,8 @@
     </script>
   
     <script type="module">
+        import { Application, Controller } from "stimulus"
+        
         // Search bar
         Stimulus.register("search", class extends Controller {
           static targets = [ "query", "results" ]
