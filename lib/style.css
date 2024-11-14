@@ -172,25 +172,26 @@ body {
 
 .header .search-suggestions {
     position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
+    
     background-color: #2A2A2A;
     border: 1px solid #333;
-    border-radius: 20px 20px 20px 20px;
-    display: none;
+    
+    top: 60px;
+    inset-inline: 0;
+    border-radius: 8px;
+    padding-block: 12px;
+    
+    display: flex;
+    flex-direction: column;
     z-index: 10;
-}
 
-.header .search-suggestions .suggestion-item {
-    padding: 10px;
-    color: #FFFFFF;
-    cursor: pointer;
-    border-radius: 20px 20px 20px 20px;
-}
-
-.header .search-suggestions .suggestion-item:hover {
-    background-color: #333;
+    list-style: none;
+    
+    .suggestion-item {
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 0;
+    }
 }
 
 .header .dropdown-menu {
