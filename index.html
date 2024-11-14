@@ -5,21 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clippsly</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/lib/style.css">
-    <script src="/lib/js/load-data.js"></script>
+    <link rel="stylesheet" href="/lib/style.css" />
+    
     <script src="/lib/js/play-tab-functions.js"></script>
+    <script src="/lib/js/load-data.js"></script>
+
+    <script type="module">
+        import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
+        window.Stimulus = Application.start()
+        
+        // Search bar
+        Stimulus.register("search", class extends Controller {
+          static targets = [ "query", "results" ]
+            
+          search() {
+            requestSearchQuery(this.query)
+          }
+
+          async autocomplete() {
+            const query = this.query;
+            if (query.length > 0) {
+              const url = "https://api.clippsly.com/endpoints/functions/search-suggestions";
+              const body = JSON.stringify({ query: query })
+              try {
+                const response = await fetch(url, {
+                  method: "GET",
+                  body: body,
+                });
+                
+                if (!response.ok) {
+                  throw new Error(`Response status: ${response.status}`);
+                }
+                
+                const json = await response.json();
+                console.log(json);
+
+                const suggestions = json;
+                suggestions.forEach((suggestion) => {
+                    const element = document.createElement("li")
+                    element.textContent = suggestion
+                    element.classList.add("suggestion-item")
+                    this.results.append(element)
+                })
+              } catch (error) {
+                console.error(error.message);
+              }
+            } else {
+                this.results.hidden = true
+            }
+          }
+
+          get query() {
+            return this.queryTarget.value
+          }
+        })
+      </script>
 </head>
 <body>
 
-<div id="header" class="header">
+<header id="header" class="header">
     <a class="logo" href="/" onclick="loadHomePage()"></a>
     <div class="search-bar-container">
-        <div class="search-bar">
-            <input type="text" placeholder="Hi friend, wanna search something?" id="search-input">
-            <button type="button" id="search-button" onclick="requestSearchQuery(document.getElementById('search-input').value)">
-                <img src="https://cdn.clippsly.com/brand_assets/svg/search-icon.svg" alt="Search">
+        <div class="search-bar" data-controller="search">
+            <input data-search-target="searchQuery" data-action="input->header#autocomplete" type="text" placeholder="Hi friend, wanna search something?" id="search-input" />
+            <button data-action="click->header#search" id="search-button" name="Search">
+                <img src="https://cdn.clippsly.com/brand_assets/svg/search-icon.svg" aria-hidden="true">
             </button>
-            <div class="search-suggestions" id="search-suggestions"></div>
+            <div data-search-target="results" class="search-suggestions"></div>
         </div>
     </div>    
     <div class="user-info dropdown">
@@ -46,9 +98,9 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    <script src="/lib/js/search-suggestions.js"></script>
+<!--     <script src="/lib/js/search-suggestions.js"></script> -->
     <script src="/lib/js/load-header-content.js"></script>
-</div>
+</header>
 
 <div class="container"></div>
 
