@@ -10,13 +10,27 @@
     <script src="/lib/js/play-tab-functions.js"></script>
     <script src="/lib/js/load-data.js"></script>
 
+    <script type="importmap">
+      {
+        "imports": {
+          "stimulus": "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js",
+        }
+      }
+    </script>
+
     <script type="module">
-        import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
-        window.Stimulus = Application.start()
-        
+      import { Application, Controller } from "stimulus"
+      window.Stimulus = Application.start()
+    </script>
+  
+    <script type="module">
         // Search bar
         Stimulus.register("search", class extends Controller {
           static targets = [ "query", "results" ]
+
+          connect() {
+            console.log("Hello, Stimulus!", this.element)
+          }
             
           search() {
             requestSearchQuery(this.query)
