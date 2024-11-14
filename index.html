@@ -41,12 +41,10 @@
           async autocomplete() {
             const query = this.query;
             if (query.length > 0) {
-              const url = "https://api.clippsly.com/endpoints/functions/search-suggestions";
-              const body = JSON.stringify({ query: query })
+              const url = "https://api.clippsly.com/endpoints/functions/search-suggestions?query=" + query;
               try {
                 const response = await fetch(url, {
-                  method: "GET",
-                  body: body,
+                  method: "GET"
                 });
                 
                 if (!response.ok) {
