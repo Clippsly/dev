@@ -59,7 +59,7 @@
                     const element = document.createElement("li")
                     element.textContent = suggestion
                     element.classList.add("suggestion-item")
-                    this.results.append(element)
+                    this.resultsTarget.append(element)
                 })
               } catch (error) {
                 console.error(error.message);
