@@ -61,7 +61,7 @@
                     const element = document.createElement("li")
                     element.textContent = suggestion
                     element.classList.add("suggestion-item")
-                    this.resultsTarget.append(element)
+                    this.results.append(element)
                 })
               } catch (error) {
                 console.error(error.message);
@@ -73,6 +73,10 @@
 
           get query() {
             return this.queryTarget.value
+          }
+
+          get results() {
+            return this.resultsTarget
           }
         })
       </script>
