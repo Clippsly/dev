@@ -83,8 +83,8 @@
     <a class="logo" href="/" onclick="loadHomePage()"></a>
     <div class="search-bar-container">
         <div class="search-bar" data-controller="search">
-            <input data-search-target="searchQuery" data-action="input->header#autocomplete" type="text" placeholder="Hi friend, wanna search something?" id="search-input" />
-            <button data-action="click->header#search" id="search-button" name="Search">
+            <input data-search-target="searchQuery" data-action="input->search#autocomplete" type="text" placeholder="Hi friend, wanna search something?" id="search-input" />
+            <button data-action="click->search#search" id="search-button" name="Search">
                 <img src="https://cdn.clippsly.com/brand_assets/svg/search-icon.svg" aria-hidden="true">
             </button>
             <div data-search-target="results" class="search-suggestions"></div>
