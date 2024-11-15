@@ -6,6 +6,7 @@
         <title>Clippsly</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="/lib/style.css" />
+        <link rel="stylesheet" href="/lib/designSystem.css">
 
         <script src="/lib/js/play-tab-functions.js"></script>
         <script src="/lib/js/load-data.js"></script>
@@ -28,6 +29,26 @@
 
             // Search bar
             Stimulus.register(
+                "header",
+                class extends Controller {
+                    static targets = ["query", "results"]
+
+                    search() {
+                        requestSearchQuery(this.query)
+                    }
+
+                    get results() {
+                        return this.resultsTarget
+                    }
+                }
+            )
+        </script>
+
+        <script type="module">
+            import { Application, Controller } from "stimulus"
+
+            // Search bar
+            Stimulus.register(
                 "search",
                 class extends Controller {
                     static targets = ["query", "results"]
@@ -41,7 +62,9 @@
                     }
 
                     hideAutocomplete() {
-                        this.results.hidden = true
+                        setTimeout(() => {
+                            this.results.hidden = true
+                        }, 200);
                     }
 
                     async autocomplete() {
@@ -65,8 +88,12 @@
                                 const suggestions = json
                                 suggestions.forEach((suggestion) => {
                                     const element = document.createElement("li")
-                                    element.textContent = suggestion
                                     element.classList.add("suggestion-item")
+                                    element.setAttribute("data-action", "click->search#searchAutocompleteQuery")
+                                    const link = document.createElement("a")
+                                    link.href = "/search?query=" + suggestion
+                                    link.textContent = suggestion
+                                    element.append(link)
                                     this.results.append(element)
                                 })
                             } catch (error) {
@@ -75,6 +102,13 @@
                         } else {
                             this.results.innerHTML = ""
                         }
+                    }
+
+                    searchAutocompleteQuery(event) {
+                        const query = event.target.textContent
+                        this.queryTarget.value = query
+                        requestSearchQuery(query)
+                        this.hideAutocomplete()
                     }
 
                     get query() {
@@ -89,36 +123,36 @@
         </script>
     </head>
     <body>
-        <header id="header" class="header">
+        <header id="header" class="header" data-controller="header">
             <a class="logo" href="/" onclick="loadHomePage()"></a>
-            <div class="search-bar-container">
-                <div class="search-bar" data-controller="search">
-                    <input
-                        data-search-target="query"
-                        data-action="input->search#autocomplete focus->search#showAutocomplete blur->search#hideAutocomplete"
-                        type="text"
-                        placeholder="Hi friend, wanna search something?"
-                        id="search-input"
-                    />
-                    <button data-action="click->search#search" id="search-button" name="Search">
-                        <img src="https://cdn.clippsly.com/brand_assets/svg/search-icon.svg" aria-hidden="true" />
-                    </button>
-                    <div data-search-target="results" hidden class="search-suggestions"></div>
-                </div>
+            <div class="search-bar" data-controller="search">
+                <input
+                    data-search-target="query"
+                    data-action="input->search#autocomplete focus->search#showAutocomplete blur->search#hideAutocomplete"
+                    type="text"
+                    placeholder="Hi friend, wanna search something?"
+                />
+                <button data-action="click->search#search" class="subtle icon-only" name="Search">
+                    <img src="https://cdn.clippsly.com/brand_assets/svg/search-icon.svg" aria-hidden="true" />
+                </button>
+                <ul data-search-target="results" hidden class="search-suggestions"></ul>
             </div>
-            <div class="user-info dropdown">
+            <button class="user-info dropdown">
                 <img
                     id="profile-pic"
                     alt="Profile Picture"
                     class="dropdown-toggle"
                     data-bs-toggle="dropdown"
+                    src="https://cdn.clippsly.com/brand_assets/icons/default-artist.png"
                     aria-expanded="false"
+                    width="50"
+                    height="50"
                 />
-                <span class="displayname" id="display-name"></span>
+                <span class="displayname" id="display-name">Log In</span>
 
                 <ul class="dropdown-menu d-none" aria-labelledby="userDropdown" id="user-dropdown-menu">
-                    <li><a class="dropdown-item" id="profile-link">My Profile</a></li>
-                    <li><a class="dropdown-item" id="balance" href="/balance"></a></li>
+                    <li><a class="dropdown-item">My Profile</a></li>
+                    <li><a class="dropdown-item" href="/balance"></a></li>
                     <li><a class="dropdown-item" href="/upload">Upload</a></li>
                     <li><a class="dropdown-item" href="/manage">Manage</a></li>
                     <li><a class="dropdown-item" href="/settings">Settings</a></li>
@@ -216,6 +250,7 @@
                         visitModeratedPage()
                     }
                 }
+
                 loadPage(window.location.pathname)
 
                 window.onpopstate = function (event) {
