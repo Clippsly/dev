@@ -40,6 +40,14 @@
                         requestSearchQuery(this.query)
                     }
 
+                    showAutocomplete() {
+                        this.results.hidden = false
+                    }
+
+                    hideAutoComplete() {
+                        this.results.hidden = true
+                    }
+
                     async autocomplete() {
                         const query = this.query
                         if (query.length > 0) {
@@ -53,11 +61,11 @@
                                     throw new Error(`Response status: ${response.status}`)
                                 }
 
-                                this.results.hidden = false
-                                this.results.innerHTML = ""
-
                                 const json = await response.json()
                                 console.log(json)
+
+                                this.results.innerHTML = ""
+                                this.showAutocomplete()
 
                                 const suggestions = json
                                 suggestions.forEach((suggestion) => {
@@ -70,7 +78,7 @@
                                 console.error(error.message)
                             }
                         } else {
-                            this.results.hidden = true
+                            this.hideAutocomplete()
                         }
                     }
 
@@ -92,7 +100,7 @@
                 <div class="search-bar" data-controller="search">
                     <input
                         data-search-target="query"
-                        data-action="input->search#autocomplete"
+                        data-action="input->search#autocomplete blur->search#hideAutocomplete"
                         type="text"
                         placeholder="Hi friend, wanna search something?"
                         id="search-input"
