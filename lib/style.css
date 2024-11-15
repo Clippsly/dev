@@ -184,6 +184,10 @@ body {
 
     list-style: none;
 
+    &:empty {
+        visibility: hidden;
+    }
+
     .suggestion-item {
         padding: 8px 16px;
         cursor: pointer;

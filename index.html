@@ -32,10 +32,6 @@
                 class extends Controller {
                     static targets = ["query", "results"]
 
-                    connect() {
-                        console.log("Hello, Stimulus!", this.element)
-                    }
-
                     search() {
                         requestSearchQuery(this.query)
                     }
@@ -65,7 +61,6 @@
                                 console.log(json)
 
                                 this.results.innerHTML = ""
-                                this.showAutocomplete()
 
                                 const suggestions = json
                                 suggestions.forEach((suggestion) => {
@@ -78,7 +73,7 @@
                                 console.error(error.message)
                             }
                         } else {
-                            this.hideAutocomplete()
+                            this.results.innerHTML = ""
                         }
                     }
 
@@ -100,7 +95,7 @@
                 <div class="search-bar" data-controller="search">
                     <input
                         data-search-target="query"
-                        data-action="input->search#autocomplete blur->search#hideAutocomplete"
+                        data-action="input->search#autocomplete focus->search#showAutocomplete blur->search#hideAutocomplete"
                         type="text"
                         placeholder="Hi friend, wanna search something?"
                         id="search-input"
