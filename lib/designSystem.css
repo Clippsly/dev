@@ -3,6 +3,8 @@ https://fluentuipr.z22.web.core.windows.net/heads/master/theme-designer/storyboo
 Key colour: #5865F2
 Vibrancy: 5
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 :root {
     --borderRadiusNone: 0;
     --borderRadiusSmall: 2px;
@@ -30,10 +32,10 @@ Vibrancy: 5
     --lineHeightHero800: 40px;
     --lineHeightHero900: 52px;
     --lineHeightHero1000: 92px;
-    --fontFamilyBase: "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto,
+    --fontFamilyBase: "Inter", "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto,
         "Helvetica Neue", sans-serif;
     --fontFamilyMonospace: Consolas, "Courier New", Courier, monospace;
-    --fontFamilyNumeric: Bahnschrift, "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont,
+    --fontFamilyNumeric: Bahnschrift, "Inter", "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont,
         Roboto, "Helvetica Neue", sans-serif;
     --fontWeightRegular: 400;
     --fontWeightMedium: 500;
