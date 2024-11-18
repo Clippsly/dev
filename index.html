@@ -28,13 +28,15 @@
             window.Stimulus = Application.start()
         </script>
 
+        <script defer src="/lib/js/components/utils.js"></script>
+
         <script
             type="module"
             src="/lib/js/components/header.js"
         ></script>
         <script
             type="module"
-            src="/lib/js/components/search.js"
+            src="/lib/js/components/searchbar.js"
         ></script>
         <script
             type="module"
@@ -42,12 +44,12 @@
         ></script>
         <script
             type="module"
-            src="/lib/js/components/loaddrive.js"
+            src="/lib/js/components/global.js"
         ></script>
     </head>
-    <body data-controller="loaddrive">
-        <header id="header" class="header" data-controller="header">
-            <a class="logo" href="/"></a>
+    <body data-controller="global">
+        <header id="header" class="header" data-controller="header" tabindex="1">
+            <a class="logo" href="/"></a>            </div>
             <div class="search-bar" data-controller="search">
                 <input
                     data-search-target="query"
@@ -76,13 +78,16 @@
             <div>
                 <div
                     data-header-target="pfp"
-                    data-action="click->header#showPfpDropdown"
+                    data-action="click->header#pfpClick"
                     class="avatar skeleton-load-bg"
+                    tabindex="0"
+                    aria-expanded="false"
                     style="anchor-name: --pfp-menu"
                 >
                     <img
                         data-header-target="pfpImg"
-                        alt=""
+                        data-global-target="skelimg"
+                        class="skeleton-load-fg"
                         role="presentation"
                         aria-hidden="true"
                         src=""
@@ -227,13 +232,15 @@
             </div>
 
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+            <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script> -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
             <!-- <script src="/lib/js/load-header-content.js"></script> -->
         </header>
+
+        <noscript>Enable JavaScript to use this application</noscript>
 
         <div class="container"></div>
 
@@ -249,96 +256,6 @@
         <script src="/lib/js/page-loaders/load-cliptivity-page.js"></script>
         <script src="/lib/js/page-loaders/load-settings-page.js"></script>
         <script src="/lib/js/page-loaders/load-balance-page.js"></script>
-        <script>
-            document.addEventListener(
-                'DOMContentLoaded',
-                function () {
-                    function loadPage(pathname) {
-                        if (pathname === '/') {
-                            loadHomePage()
-                        } else if (pathname.startsWith('/users/')) {
-                            const username = pathname.split('/')[2]
-                            visitUserProfile(username)
-                        } else if (pathname.startsWith('/track/')) {
-                            const id = pathname.split('/')[2]
-                            visitTrackPage(id)
-                        } else if (pathname.startsWith('/search')) {
-                            const queryParams = new URLSearchParams(
-                                window.location.search
-                            )
-                            const query = queryParams.get('query')
-                            requestSearchQuery(query)
-                        } else if (pathname.startsWith('/error')) {
-                            const errorParams = new URLSearchParams(
-                                window.location.search
-                            )
-                            const code = errorParams.get('code')
-                            visitErrorPage(code)
-                        } else if (pathname.startsWith('/upload')) {
-                            visitUploadPage()
-                        } else if (pathname.startsWith('/balance')) {
-                            visitBalancePage()
-                        } else if (
-                            pathname.startsWith('/cliptivity')
-                        ) {
-                            const queryParams = new URLSearchParams(
-                                window.location.search
-                            )
-                            const page = queryParams.get('page')
-                            loadCliptivityPage(page)
-                        } else if (
-                            pathname === '/login' ||
-                            pathname.startsWith('/login')
-                        ) {
-                            const loginParams = new URLSearchParams(
-                                window.location.search
-                            )
-                            visitLoginPage(loginParams)
-                        } else if (pathname.startsWith('/settings')) {
-                            const loginParams = new URLSearchParams(
-                                window.location.search
-                            )
-                            visitSettingsPage(loginParams)
-                        } else if (
-                            pathname === '/register' ||
-                            pathname.startsWith('/register')
-                        ) {
-                            const registerParams =
-                                new URLSearchParams(
-                                    window.location.search
-                                )
-                            visitRegisterPage(registerParams)
-                        } else if (
-                            pathname.startsWith('/not-approved')
-                        ) {
-                            visitModeratedPage()
-                        }
-                    }
-
-                    loadPage(window.location.pathname)
-
-                    window.onpopstate = function (event) {
-                        loadPage(window.location.pathname)
-                    }
-
-                    document.querySelectorAll('a').forEach((link) => {
-                        link.addEventListener(
-                            'click',
-                            function (event) {
-                                event.preventDefault()
-                                const path = this.getAttribute('href')
-                                history.pushState(null, '', path)
-                                loadPage(path)
-                            }
-                        )
-                    })
-                }
-            )
-
-            async function openExternalWebsite(site) {
-                window.open(site)
-            }
-        </script>
 
         <div class="play-tab" id="play-tab">
             <div class="track-info">
