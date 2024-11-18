@@ -510,7 +510,9 @@ hr {
     gap: var(--spacingVerticalM);
     background-color: var(--colorNeutralBackground2);
     border-radius: 24px;
-    height: fit-content;
+
+    width: 192px;
+    height: 246px;
 
     text-decoration: none;
     color: inherit;
@@ -530,6 +532,13 @@ hr {
     &:active {
         outline-color: var(--colorNeutralStroke2);
     }
+
+    span {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+    }
 }
 
 .track.skeleton {
@@ -548,6 +557,7 @@ hr {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    min-width: 0;
     gap: var(--spacingVerticalXS);
     & > span.skeleton-load-bg {
         border-radius: 100px;
