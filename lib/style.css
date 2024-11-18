@@ -601,6 +601,14 @@ hr {
 
 /* User profile */
 
+.users .profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    z-index: 1;
+    position: relative;
+}
+
 .users .profile-banner {
     position: relative;
     height: 200px;
