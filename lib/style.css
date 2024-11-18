@@ -503,6 +503,10 @@ hr {
     gap: var(--spacingVerticalXL);
 }
 
+.user-list {
+    justify-content: center;
+}
+
 .track {
     display: flex;
     flex-direction: column;
@@ -602,9 +606,10 @@ hr {
 .user {
     display: flex;
     flex-direction: column;
-    padding: var(--spacingVerticalL) var(--spacingHorizontalL);
-    gap: var(--spacingVerticalM);
-    background-color: var(--colorNeutralBackground2);
+    align-items: center;
+    text-align: center;
+
+    padding: 0 var(--spacingHorizontalS);
     border-radius: 24px;
     height: fit-content;
 }
