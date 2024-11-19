@@ -61,7 +61,11 @@
                 height: 100%;
             }
             .search-bar button {
-                display: none;
+                background: none;
+                border: none;
+                position: absolute;
+                z-index: 1;
+                inset-inline-end: 0;
             }
             .container {
                 padding: 32px;
@@ -146,6 +150,10 @@
         <script
             type="module"
             src="/lib/js/components/trackLoader.js"
+        ></script>
+        <script
+            type="module"
+            src="/lib/js/components/login.js"
         ></script>
         <script
             type="module"
@@ -498,7 +506,10 @@
                                 <span>Register</span>
                             </li>
                         </a>
-                        <a href="/ca" class="menu-item-hyperlink">
+                        <a
+                            href="/search?query=ca"
+                            class="menu-item-hyperlink"
+                        >
                             <li class="menu-item">
                                 <div class="icon">
                                     <svg
@@ -652,9 +663,9 @@
                         <span>Help</span>
                     </li>
                     <a
-                        href=""
+                        href="https://support.clippsly.com/"
                         class="menu-item-hyperlink"
-                        data-global-target="open-external"
+                        data-global-target="openExternal"
                     >
                         <li class="menu-item">
                             <div class="icon">
@@ -675,9 +686,9 @@
                         </li>
                     </a>
                     <a
-                        href=""
+                        href="https://support.clippsly.com/knowledgebase.php?article=1"
                         class="menu-item-hyperlink"
-                        data-global-target="open-external"
+                        data-global-target="openExternal"
                     >
                         <li class="menu-item">
                             <div class="icon">
@@ -698,9 +709,9 @@
                         </li>
                     </a>
                     <a
-                        href=""
+                        href="https://support.clippsly.com/knowledgebase.php?article=2"
                         class="menu-item-hyperlink"
-                        data-global-target="open-external"
+                        data-global-target="openExternal"
                     >
                         <li class="menu-item">
                             <div class="icon">

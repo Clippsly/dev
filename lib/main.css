@@ -60,29 +60,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
-
-.skeleton-load-fg {
-    transition-duration: var(--durationNormal);
-    transition-property: opacity;
-    transition-timing-function: var(--curveEasyEase);
-    opacity: 0;
-    &.loaded {
-        opacity: 1;
-    }
-}
-
-.skeleton-load-bg {
-    animation: skeleton-loading 0.8s ease-in-out infinite alternate;
-}
-
-@keyframes skeleton-loading {
-    0% {
-        background-color: hsla(200, 20%, 100%, 5%);
-    }
-    100% {
-        background-color: hsla(200, 20%, 100%, 20%);
-    }
+    padding-inline: max(10vw, var(--spacingHorizontalM));
 }
 
 /* Fluent components */
@@ -373,6 +351,31 @@ hr {
     height: var(--strokeWidthThin);
 }
 
+/* Skeletons */
+.skeleton-load-fg {
+    transition-duration: var(--durationNormal);
+    transition-property: opacity;
+    transition-timing-function: var(--curveEasyEase);
+    opacity: 0;
+    &.loaded {
+        opacity: 1;
+    }
+}
+
+.skeleton-load-bg {
+    background-color: hsl(200, 20%, 100%);
+    animation: skeleton-loading 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        opacity: 0.05;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
 /* Clippsly specific */
 
 .highlight {
@@ -526,10 +529,6 @@ hr {
     text-decoration: none;
     color: inherit;
 
-    transition-duration: var(--durationFaster);
-    transition-property: background, border, color;
-    transition-timing-function: var(--curveEasyEase);
-
     border: var(--strokeWidthThin) solid var(--colorTransparentStroke);
 
     &:hover,
@@ -605,7 +604,7 @@ hr {
     overflow: hidden;
 
     transition-duration: var(--durationGentle);
-    transition-property: scale;
+    transition-property: scale, opacity;
     transition-timing-function: var(--curveEasyEase);
 }
 
@@ -1198,8 +1197,12 @@ hr {
         margin-right: 0;
     }
 
+    .side-align {
+        padding-inline: 0;
+    }
+
     .middle-float {
-        width: 100%;
-        height: 100%;
+        width: auto;
+        height: auto;
     }
 }
