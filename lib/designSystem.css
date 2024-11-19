@@ -4,7 +4,6 @@ Key colour: #5865F2
 Vibrancy: 5
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 :root {
     --borderRadiusNone: 0;
     --borderRadiusSmall: 2px;
@@ -32,11 +31,13 @@ Vibrancy: 5
     --lineHeightHero800: 40px;
     --lineHeightHero900: 52px;
     --lineHeightHero1000: 92px;
-    --fontFamilyBase: "Inter", "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto,
-        "Helvetica Neue", sans-serif;
-    --fontFamilyMonospace: Consolas, "Courier New", Courier, monospace;
-    --fontFamilyNumeric: Bahnschrift, "Inter", "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont,
-        Roboto, "Helvetica Neue", sans-serif;
+    --fontFamilyBase: 'Inter', 'Segoe UI',
+        'Segoe UI Web (West European)', -apple-system,
+        BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+    --fontFamilyMonospace: Consolas, 'Courier New', Courier, monospace;
+    --fontFamilyNumeric: Bahnschrift, 'Inter', 'Segoe UI',
+        'Segoe UI Web (West European)', -apple-system,
+        BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
     --fontWeightRegular: 400;
     --fontWeightMedium: 500;
     --fontWeightSemibold: 600;
@@ -104,7 +105,12 @@ Vibrancy: 5
     --colorNeutralForeground3BrandSelected: #6a71f7;
     --colorNeutralForeground4: #999999;
     --colorNeutralForegroundDisabled: #5c5c5c;
-    --colorNeutralForegroundInvertedDisabled: rgba(255, 255, 255, 0.4);
+    --colorNeutralForegroundInvertedDisabled: rgba(
+        255,
+        255,
+        255,
+        0.4
+    );
     --colorBrandForegroundLink: #6a71f7;
     --colorBrandForegroundLinkHover: #8080f9;
     --colorBrandForegroundLinkPressed: #5563ee;
@@ -180,7 +186,12 @@ Vibrancy: 5
     --colorTransparentBackgroundPressed: transparent;
     --colorTransparentBackgroundSelected: transparent;
     --colorNeutralBackgroundDisabled: #141414;
-    --colorNeutralBackgroundInvertedDisabled: rgba(255, 255, 255, 0.1);
+    --colorNeutralBackgroundInvertedDisabled: rgba(
+        255,
+        255,
+        255,
+        0.1
+    );
     --colorNeutralStencil1: #575757;
     --colorNeutralStencil2: #333333;
     --colorNeutralStencil1Alpha: rgba(255, 255, 255, 0.1);
@@ -432,16 +443,28 @@ Vibrancy: 5
     --colorStatusDangerBorder2: #dc626d;
     --colorStatusDangerBackground3Hover: #b10e1c;
     --colorStatusDangerBackground3Pressed: #960b18;
-    --shadow2: 0 0 2px rgba(0, 0, 0, 0.24), 0 1px 2px rgba(0, 0, 0, 0.28);
-    --shadow4: 0 0 2px rgba(0, 0, 0, 0.24), 0 2px 4px rgba(0, 0, 0, 0.28);
-    --shadow8: 0 0 2px rgba(0, 0, 0, 0.24), 0 4px 8px rgba(0, 0, 0, 0.28);
-    --shadow16: 0 0 2px rgba(0, 0, 0, 0.24), 0 8px 16px rgba(0, 0, 0, 0.28);
-    --shadow28: 0 0 8px rgba(0, 0, 0, 0.24), 0 14px 28px rgba(0, 0, 0, 0.28);
-    --shadow64: 0 0 8px rgba(0, 0, 0, 0.24), 0 32px 64px rgba(0, 0, 0, 0.28);
-    --shadow2Brand: 0 0 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.25);
-    --shadow4Brand: 0 0 2px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.25);
-    --shadow8Brand: 0 0 2px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.25);
-    --shadow16Brand: 0 0 2px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.25);
-    --shadow28Brand: 0 0 8px rgba(0, 0, 0, 0.3), 0 14px 28px rgba(0, 0, 0, 0.25);
-    --shadow64Brand: 0 0 8px rgba(0, 0, 0, 0.3), 0 32px 64px rgba(0, 0, 0, 0.25);
+    --shadow2: 0 0 2px rgba(0, 0, 0, 0.24),
+        0 1px 2px rgba(0, 0, 0, 0.28);
+    --shadow4: 0 0 2px rgba(0, 0, 0, 0.24),
+        0 2px 4px rgba(0, 0, 0, 0.28);
+    --shadow8: 0 0 2px rgba(0, 0, 0, 0.24),
+        0 4px 8px rgba(0, 0, 0, 0.28);
+    --shadow16: 0 0 2px rgba(0, 0, 0, 0.24),
+        0 8px 16px rgba(0, 0, 0, 0.28);
+    --shadow28: 0 0 8px rgba(0, 0, 0, 0.24),
+        0 14px 28px rgba(0, 0, 0, 0.28);
+    --shadow64: 0 0 8px rgba(0, 0, 0, 0.24),
+        0 32px 64px rgba(0, 0, 0, 0.28);
+    --shadow2Brand: 0 0 2px rgba(0, 0, 0, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.25);
+    --shadow4Brand: 0 0 2px rgba(0, 0, 0, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.25);
+    --shadow8Brand: 0 0 2px rgba(0, 0, 0, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.25);
+    --shadow16Brand: 0 0 2px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.25);
+    --shadow28Brand: 0 0 8px rgba(0, 0, 0, 0.3),
+        0 14px 28px rgba(0, 0, 0, 0.25);
+    --shadow64Brand: 0 0 8px rgba(0, 0, 0, 0.3),
+        0 32px 64px rgba(0, 0, 0, 0.25);
 }
