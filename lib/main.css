@@ -1197,4 +1197,9 @@ hr {
     .header .user-info img {
         margin-right: 0;
     }
+
+    .middle-float {
+        width: 100%;
+        height: 100%;
+    }
 }
