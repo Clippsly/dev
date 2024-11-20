@@ -8,29 +8,6 @@
         />
         <title>Clippsly</title>
 
-        <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      // This script checks to see if a redirect is present in the query string,
-      // converts it back into the correct url and adds it to the
-      // browser's history using window.history.replaceState(...),
-      // which won't cause the browser to attempt to load the new url.
-      // When the single page app is loaded further down in this file,
-      // the correct url will be waiting in the browser's history for
-      // the single page app to route accordingly.
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
-        </script>
-
         <!-- As a test! -->
         <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" /> -->
         <link rel="stylesheet" href="/lib/designSystem.css" />
@@ -42,9 +19,6 @@
                 background-color: #141414;
                 color: #ffffff;
                 margin: 0;
-            }
-            * {
-                font-family: 'Inter', sans-serif !important;
             }
             .header {
                 height: 64px;
@@ -217,7 +191,7 @@
                     popover
                     style="position-anchor: --search-bar"
                     data-search-target="results"
-                    class="search-suggestions menu"
+                    class="search-suggestions position-center menu"
                 ></ul>
             </div>
             <div data-header-target="pfpContainer">
@@ -244,7 +218,7 @@
                     popover
                     style="position-anchor: --pfp-menu"
                     data-header-target="pfpDropdown"
-                    class="dropdown-menu menu"
+                    class="dropdown-menu position-start menu"
                     tabindex="0"
                 >
                     <li class="section-header">
