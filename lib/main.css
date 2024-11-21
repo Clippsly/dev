@@ -32,6 +32,23 @@ body {
     overscroll-behavior: none;
 }
 
+/* Text styles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-block: var(--spacingVerticalS);
+}
+
+.text-danger {
+    color: var(--colorStatusDangerForeground1);
+}
+
+/* Layout */
+
 .container {
     padding: 32px;
     display: flex;
@@ -52,8 +69,12 @@ body {
     color: var(--colorNeutralForeground1);
     border-radius: var(--borderRadiusXLarge);
     padding: var(--spacingVerticalXL) var(--spacingHorizontalXL);
-    width: 370px;
+    min-width: 370px;
+    max-width: 500px;
+    max-height: 500px;
     margin-inline: auto;
+
+    overflow-y: auto;
 }
 
 .side-align {
@@ -251,15 +272,6 @@ button.icon-only {
     }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin-block: var(--spacingVerticalS);
-}
-
 input[type='text'],
 input[type='password'],
 input[type='email'] {
@@ -399,15 +411,6 @@ a.hyperlink {
     animation: skeleton-loading 0.8s ease-in-out infinite alternate;
 }
 
-@keyframes skeleton-loading {
-    0% {
-        opacity: 0.05;
-    }
-    100% {
-        opacity: 0.2;
-    }
-}
-
 /* Clippsly specific */
 
 .highlight {
@@ -529,13 +532,6 @@ a.hyperlink {
     transform-origin: top center;
 }
 
-@keyframes page-in {
-    from {
-        scale: 1.05;
-        opacity: 0.7;
-    }
-}
-
 /* Track Elements */
 
 .track-carousel {
@@ -577,9 +573,13 @@ a.hyperlink {
 
     border: var(--strokeWidthThin) solid var(--colorTransparentStroke);
 
+    /* From skeleton */
+    animation: fade-in-quarter var(--durationNormal)
+        var(--curveEasyEase);
+
     &:hover,
     &:focus-visible {
-        background-color: var(--colorNeutralBackground2);
+        background-color: var(--colorNeutralBackground4Hover);
         outline: none;
         border-color: var(--colorNeutralStroke3);
         z-index: 1;
@@ -1165,14 +1165,30 @@ a.hyperlink {
 
 /* Upload */
 
-.upload-list-group a {
-    background-color: #1a1a1a;
-    color: #ffffff;
+.form-group {
+    display: flex;
+    justify-content: space-between;
 }
-.upload-list-group a:hover {
-    background-color: #1e1e1e;
-    color: #ffffff;
+
+.acknowledgements {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacingVerticalS);
+    & > label {
+        font-size: var(--fontSizeBase300);
+        background-color: var(--colorBrandBackground2);
+        padding: var(--spacingVerticalS) var(--spacingHorizontalS);
+        border-radius: var(--borderRadiusLarge);
+        outline: 1px solid var(--colorBrandStroke1);
+        & > b {
+            &:not(.text-danger) {
+                color: var(--colorBrandForeground2);
+            }
+            font-weight: var(--fontWeightBold);
+        }
+    }
 }
+
 .upload-loading-overlay {
     display: none;
     position: fixed;
@@ -1185,31 +1201,24 @@ a.hyperlink {
     align-items: center;
     justify-content: center;
 }
+
 .upload-loading-overlay.show {
     display: flex;
 }
+
 .upload-loading-spinner {
     width: 3rem;
     height: 3rem;
     border: 0.5rem solid #f3f3f3;
-    border-top: 0.5rem solid #3498db;
+    border-top: 0.5rem solid var(--colorBrandForeground1);
     border-radius: 50%;
-    animation: upload-spin 1s linear infinite;
+    animation: upload-spin 1s ease-in-out infinite;
 }
-@keyframes upload-spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+
 .upload-track {
-    border: 1px solid #444;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #333;
+    background-color: var(--colorNeutralBackground2);
 }
+
 .upload-preview-image {
     width: 150px;
     height: 150px;
@@ -1288,5 +1297,36 @@ a.hyperlink {
 @media (orientation: portrait) {
     .track-page {
         flex-direction: column;
+    }
+}
+
+@keyframes upload-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes skeleton-loading {
+    0% {
+        opacity: 0.05;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes page-in {
+    from {
+        scale: 1.05;
+        opacity: 0.7;
+    }
+}
+
+@keyframes fade-in-quarter {
+    from {
+        opacity: 0.75;
     }
 }
