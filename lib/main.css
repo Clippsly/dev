@@ -144,7 +144,7 @@ body {
     }
 
     span {
-        text-wrap: nowrap;
+        white-space: nowrap;
     }
 
     .icon {
@@ -522,6 +522,20 @@ a.hyperlink {
     max-width: none;
 }
 
+/* General SPA styles */
+.page,
+.container > * {
+    animation: page-in var(--durationSlow) var(--curveDecelerateMax);
+    transform-origin: top center;
+}
+
+@keyframes page-in {
+    from {
+        scale: 1.05;
+        opacity: 0.7;
+    }
+}
+
 /* Track Elements */
 
 .track-carousel {
@@ -670,9 +684,26 @@ a.hyperlink {
     align-items: center;
     text-align: center;
 
-    padding: 0 var(--spacingHorizontalS);
+    padding: var(--spacingVerticalS) 0;
     border-radius: 24px;
     height: fit-content;
+
+    border: var(--strokeWidthThin) solid var(--colorTransparentStroke);
+
+    &:hover,
+    &:focus-visible {
+        background-color: var(--colorNeutralBackground2);
+        border-color: var(--colorNeutralStroke3);
+        outline: none;
+        z-index: 1;
+        .track-cover img {
+            scale: 1.1;
+        }
+    }
+
+    &:active {
+        border-color: var(--colorNeutralStroke1);
+    }
 }
 
 /* User profile */
@@ -683,6 +714,7 @@ a.hyperlink {
     border-radius: 50%;
     z-index: 1;
     position: relative;
+    box-shadow: var(--shadow16);
 }
 
 .users .profile-banner {
@@ -769,7 +801,7 @@ a.hyperlink {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
-    overflow-y: auto;
+    max-height: 100%;
     gap: var(--spacingHorizontalM);
     & > div:first-of-type {
         flex-grow: 1;
@@ -841,11 +873,14 @@ a.hyperlink {
 
 .more-from-author {
     background-color: var(--colorNeutralBackground2);
-    padding: var(--spacingVerticalM) var(--spacingHorizontalM);
-    border-radius: var(--borderRadiusXLarge);
+    padding: var(--spacingVerticalMNudge)
+        var(--spacingHorizontalMNudge);
+    border-radius: 24px;
     flex-direction: column;
-    width: min-content;
-    height: calc(100% - var(--spacingVerticalL));
+    flex-shrink: 0;
+    width: fit-content;
+    height: auto;
+    overflow: hidden auto;
 }
 
 .description {
@@ -1248,7 +1283,9 @@ a.hyperlink {
         width: auto;
         height: auto;
     }
+}
 
+@media (orientation: portrait) {
     .track-page {
         flex-direction: column;
     }

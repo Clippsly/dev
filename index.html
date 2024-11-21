@@ -85,8 +85,8 @@
             }
         </style>
 
-        <script src="/lib/js/play-tab-functions.js"></script>
-        <script src="/lib/js/load-data.js"></script>
+        <script src="/lib/js/legacy/play-tab-functions.js"></script>
+        <!-- <script src="/lib/js/legacy/load-data.js"></script> -->
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -132,10 +132,10 @@
             window.Stimulus = Application.start()
         </script>
 
-        <script defer src="/lib/js/components/utils.js"></script>
+        <!-- Components/Utilities -->
 
-        <!-- Components -->
-
+        <script defer src="/lib/js/utils.js"></script>
+        <script type="module" src="/lib/js/global.js"></script>
         <script
             type="module"
             src="/lib/js/components/header.js"
@@ -144,18 +144,10 @@
             type="module"
             src="/lib/js/components/searchbar.js"
         ></script>
-        <script
-            type="module"
-            src="/lib/js/components/trackLoader.js"
-        ></script>
-        <script
-            type="module"
-            src="/lib/js/components/login.js"
-        ></script>
-        <script
-            type="module"
-            src="/lib/js/components/global.js"
-        ></script>
+
+        <!-- Page drivers -->
+        <script type="module" src="/lib/js/pages/home.js"></script>
+        <script type="module" src="/lib/js/pages/login.js"></script>
     </head>
     <body data-controller="global">
         <header id="header" class="header" data-controller="header">
