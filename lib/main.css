@@ -69,8 +69,8 @@ h6 {
     color: var(--colorNeutralForeground1);
     border-radius: var(--borderRadiusXLarge);
     padding: var(--spacingVerticalXL) var(--spacingHorizontalXL);
-    min-width: 370px;
-    max-width: 500px;
+    min-width: 200px;
+    max-width: 370px;
     max-height: 500px;
     margin-inline: auto;
 
@@ -332,6 +332,71 @@ input[type='email'] {
     }
 }
 
+input[type='checkbox'] {
+    --size: 16px;
+    background-color: var(--colorNeutralBackground1);
+    border-radius: var(--borderRadiusSmall);
+    border: var(--strokeWidthThin) solid
+        var(--colorNeutralStrokeAccessible);
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    width: var(--size);
+
+    appearance: none;
+    height: var(--size);
+    aspect-ratio: 1;
+
+    &::before {
+        color: var(--colorNeutralForegroundInverted);
+        inset: 0;
+        margin: auto;
+        position: absolute;
+
+        fill: currentColor;
+        display: inline-flex;
+        flex: 1 0 auto;
+        width: 12px;
+
+        content: '';
+        background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJjdXJyZW50Q29sb3IiIGFyaWEtaGlkZGVuPSJ0cnVlIiBjbGFzcz0iY2hlY2tlZC1pbmRpY2F0b3IiIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgICAgICAgICA8cGF0aCBkPSJNOS43NiAzLjJjLjMuMjkuMzIuNzYuMDQgMS4wNmwtNC4yNSA0LjVhLjc1Ljc1IDAgMCAxLTEuMDguMDJMMi4yMiA2LjUzYS43NS43NSAwIDAgMSAxLjA2LTEuMDZsMS43IDEuN0w4LjcgMy4yNGEuNzUuNzUgMCAwIDEgMS4wNi0uMDRaIiBmaWxsPSJjdXJyZW50Q29sb3IiPjwvcGF0aD4NCiAgICA8L3N2Zz4=');
+        background-size: 12px 16px;
+
+        opacity: 0;
+
+        height: 16px;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: -8px;
+        box-sizing: border-box;
+        outline: none;
+        border: var(--strokeWidthThick) solid
+            var(--colorTransparentStroke);
+        border-radius: var(--borderRadiusMedium);
+
+        cursor: inherit;
+    }
+
+    &:focus-visible {
+        box-shadow: none;
+        outline: none;
+        &::after {
+            border-color: var(--colorStrokeFocus2);
+        }
+    }
+
+    &:checked {
+        background-color: var(--colorCompoundBrandBackground);
+        border-color: var(--colorCompoundBrandStroke);
+        &::before {
+            opacity: 1;
+        }
+    }
+}
+
 .avatar {
     position: relative;
     align-items: center;
@@ -362,6 +427,37 @@ input[type='email'] {
         }
     }
 }
+
+/* Details */
+
+details[open] summary {
+    border-radius: var(--borderRadiusLarge) var(--borderRadiusLarge) 0
+        0;
+}
+
+details summary {
+    cursor: pointer;
+    background-color: var(--colorNeutralBackground1);
+    padding: var(--spacingVerticalMNudge)
+        var(--spacingHorizontalMNudge);
+
+    border-radius: var(--borderRadiusLarge);
+}
+
+details summary > * {
+    display: inline;
+}
+
+details > div {
+    background-color: var(--colorBrandBackground2);
+    border: 1px solid var(--colorNeutralBackground1);
+    border-radius: 0 0 var(--borderRadiusLarge)
+        var(--borderRadiusLarge);
+    padding: var(--spacingVerticalMNudge)
+        var(--spacingHorizontalMNudge);
+}
+
+/* Divider */
 
 hr {
     border: none;
@@ -1165,6 +1261,12 @@ a.hyperlink {
 
 /* Upload */
 
+.form-backport {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacingVerticalS);
+}
+
 .form-group {
     display: flex;
     justify-content: space-between;
@@ -1179,12 +1281,24 @@ a.hyperlink {
         background-color: var(--colorBrandBackground2);
         padding: var(--spacingVerticalS) var(--spacingHorizontalS);
         border-radius: var(--borderRadiusLarge);
+
         outline: 1px solid var(--colorBrandStroke1);
+
+        display: flex;
+        gap: var(--spacingHorizontalS);
+
+        user-select: none;
+        cursor: pointer;
         & > b {
             &:not(.text-danger) {
                 color: var(--colorBrandForeground2);
             }
             font-weight: var(--fontWeightBold);
+        }
+
+        &:has(> input[type='checkbox']:checked) {
+            background-color: var(--colorBrandBackground2);
+            outline-color: var(--colorBrandStroke1);
         }
     }
 }
